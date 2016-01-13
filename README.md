@@ -42,7 +42,6 @@ RUN chown -R www-data:www-data /usr/share/nginx/html && \
 # Customize PHP settings (optional)
 # COPY php.ini /etc/php5/fpm/conf.d/local.ini
 
-
 # Customize PHP-FPM settings (optional)
 # COPY php-fpm.conf /etc/php5/fpm/pool.d/www.conf
 
