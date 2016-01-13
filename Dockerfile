@@ -28,4 +28,6 @@ RUN chown -R www-data:www-data /var/symfony && \
 	chmod -R +s /var/symfony && \
 	umask 0002
 
+WORKDIR /var/symfony
+
 CMD ["/entrypoint.sh"]
