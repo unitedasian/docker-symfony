@@ -11,17 +11,17 @@ Create your [symfony](http://symfony.com/) app.
 ### Using the original image
 
 ```
-docker run -d -p 8000:80 -v `pwd`:/usr/share/nginx/html unitedasian/symfony
+docker run -d -p 8000:80 -v $(pwd):/usr/share/nginx/html unitedasian/symfony
 ```
 
 To customize PHP, PHP-FPM settings and nginx configuration, create the relevant configuration files in your host and mount them on the container:
 
 ```
 docker run -d -p 8000:80 \
-	-v `pwd`/php.ini:/etc/php5/fpm/conf.d/local.ini \
-	-v `pwd`/php-fpm.conf:/etc/php5/fpm/pool.d/ww.conf \
-	-v `pwd`/nginx.conf:/etc/nginx/nginx.conf \
-	-v `pwd`:/usr/share/nginx/html \
+	-v $(pwd)/php.ini:/etc/php5/fpm/conf.d/local.ini \
+	-v $(pwd)/php-fpm.conf:/etc/php5/fpm/pool.d/ww.conf \
+	-v $(pwd)/nginx.conf:/etc/nginx/nginx.conf \
+	-v $(pwd):/usr/share/nginx/html \
 	unitedasian/symfony
 ```
 
