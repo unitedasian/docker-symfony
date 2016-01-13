@@ -32,13 +32,6 @@ Create a Dockerfile with the following contents:
 ```
 FROM unitedasian/symfony
 
-COPY . /usr/share/nginx/html
-
-RUN chown -R www-data:www-data /usr/share/nginx/html && \
-	chmod -R 775 /usr/share/nginx/html && \
-	chmod -R +s /usr/share/nginx/html && \
-	umask 0002
-
 # Customize PHP settings (optional)
 # COPY php.ini /etc/php5/fpm/conf.d/local.ini
 
@@ -51,6 +44,16 @@ RUN chown -R www-data:www-data /usr/share/nginx/html && \
 CMD ["/entrypoint.sh"]
 ```
 
+```
+docker build -t <image> .
+
+docker run -d -p 8000:80 \
+#    -v $(pwd)/php.ini:/etc/php5/fpm/conf.d/local.ini \
+#    -v $(pwd)/php-fpm.conf:/etc/php5/fpm/pool.d/ww.conf \
+#    -v $(pwd)/nginx.conf:/etc/nginx/nginx.conf \
+    -v $(pwd):/var/symfony \
+    <image>
+```
 
 Important
 ---------
