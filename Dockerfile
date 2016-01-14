@@ -24,6 +24,8 @@ COPY php-fpm.conf /etc/php5/fpm/php-fpm.conf
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
+COPY vhost.conf /etc/nginx/sites-enabled/vhost.conf
+
 VOLUME /var/symfony
 
 RUN chown -R www-data:www-data /var/symfony && \
