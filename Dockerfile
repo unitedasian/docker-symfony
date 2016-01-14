@@ -20,6 +20,8 @@ COPY entrypoint.d /entrypoint.d
 
 COPY php.ini /etc/php5/fpm/conf.d/local.ini
 
+COPY php-fpm.conf /etc/php5/fpm/php-fpm.conf
+
 COPY nginx.conf /etc/nginx/nginx.conf
 
 VOLUME /var/symfony
