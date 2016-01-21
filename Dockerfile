@@ -6,6 +6,7 @@ RUN usermod -u 1000 www-data
 
 RUN apt-get update && apt-get install -y \
 		curl \
+		git \
 		php5-apcu \
 		php5-curl \
 		php5-gd \
