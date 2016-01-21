@@ -5,6 +5,7 @@ MAINTAINER Olivier Pichon <op@united-asian.com>
 RUN usermod -u 1000 www-data
 
 RUN apt-get update && apt-get install -y \
+		curl \
 		php5-apcu \
 		php5-curl \
 		php5-gd \
@@ -14,7 +15,9 @@ RUN apt-get update && apt-get install -y \
 		php5-mysql \
 		php5-xsl \
 	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+	&& curl -sS https://getcomposer.org/installer | php \
+	&& mv composer.phar /usr/local/bin/composer
 
 COPY entrypoint.d /entrypoint.d
 
