@@ -11,17 +11,16 @@ Create your [symfony](http://symfony.com/) app.
 ### Using the original image
 
 ```
-docker run -d -p 8000:80 -v $(pwd):/usr/share/nginx/html unitedasian/symfony
+docker run -d -p 8000:80 -v $(pwd):/var/www unitedasian/symfony
 ```
 
 To customize PHP, PHP-FPM settings and nginx configuration, create the relevant configuration files in your host and mount them on the container:
 
 ```
 docker run -d -p 8000:80 \
-	-v $(pwd)/php.ini:/etc/php5/fpm/conf.d/local.ini \
-	-v $(pwd)/php-fpm.conf:/etc/php5/fpm/pool.d/ww.conf \
-	-v $(pwd)/nginx.conf:/etc/nginx/nginx.conf \
-	-v $(pwd):/usr/share/nginx/html \
+	-e "PHP_MEMORY_LIMI=128M"
+	-e "PHP_TIMEZONE=UTC"
+	-v $(pwd):/var/www \
 	unitedasian/symfony
 ```
 
@@ -31,27 +30,13 @@ Create a Dockerfile with the following contents:
 
 ```
 FROM unitedasian/symfony
-
-# Customize PHP settings (optional)
-# COPY php.ini /etc/php5/fpm/conf.d/local.ini
-
-# Customize PHP-FPM settings (optional)
-# COPY php-fpm.conf /etc/php5/fpm/pool.d/www.conf
-
-# Customize nginx configuration (optional)
-# COPY nginx.conf /etc/nginx/nginx.conf
-
-CMD ["/entrypoint.sh"]
 ```
 
 ```
 docker build -t <image> .
 
 docker run -d -p 8000:80 \
-#    -v $(pwd)/php.ini:/etc/php5/fpm/conf.d/local.ini \
-#    -v $(pwd)/php-fpm.conf:/etc/php5/fpm/pool.d/ww.conf \
-#    -v $(pwd)/nginx.conf:/etc/nginx/nginx.conf \
-    -v $(pwd):/var/symfony \
+    -v $(pwd):/var/www \
     <image>
 ```
 
