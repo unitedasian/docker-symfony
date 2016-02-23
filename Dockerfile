@@ -11,6 +11,7 @@ RUN apk add --update \
 		php-intl \
 		php-json \
 		php-pdo_mysql \
+		php-xml \
 	&& rm -rf /var/cache/apk/*
 
 ONBUILD COPY . /var/www
