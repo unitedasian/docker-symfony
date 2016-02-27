@@ -2,9 +2,7 @@ FROM unitedasian/php-fpm
 
 MAINTAINER Olivier Pichon <op@united-asian.com>
 
-COPY entrypoint.d /entrypoint.d
-
-RUN apk add --update \
+RUN apk update && apk add --update \
 		php-ctype \
 		php-dom \
 		php-iconv \
@@ -13,5 +11,7 @@ RUN apk add --update \
 		php-pdo_mysql \
 		php-xml \
 	&& rm -rf /var/cache/apk/*
+
+COPY entrypoint.d /entrypoint.d
 
 ONBUILD COPY . /var/www
